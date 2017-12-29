@@ -1,0 +1,33 @@
+{extend name='base'}
+{block name='content'}
+<body>
+<table width="100%" height="80" right="150" border="0" cellpadding="8" cellspacing="1" bgcolor="#000000">
+  <tr>
+    <form id="form1" name="form1" method="post" action="{:url('article_modify')}">
+      <table width="800" border="0" cellpadding="8" cellspacing="1">
+        <tr>
+          <td colspan="2" align="center">修改文章</td>
+          </tr>
+        <tr>
+             <input type="hidden" name="id" id ="id" value="{$res.id}"> 
+          <td>标题</td>
+          <td><label for="description"></label>
+            <input name="title" value="{$res.title}" id="title" ></td>
+        </tr>
+        <tr>
+            <td>内容</td>
+            <td><textarea name="content" cols="100" rows="20" id="content">{$res.content}</textarea></td>
+          </tr>
+        <tr>
+          <td colspan="2" align="right"><input type="submit" name="button" id="button" value="提交" /></td>
+          </tr>
+      </table>
+    </form></td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#FFFF99">&nbsp;</td>
+  </tr>
+</table>
+</body>
+        </html>
+{/block}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>个人博客 - 一个刚开始学习web的弱鸡</title>
+<meta name="keywords" content="yeleng" />
+<meta name="description" content="个人博客 - 一个刚开始学习web的弱鸡" />
+<link href="__CSS__/base.css" rel="stylesheet">
+<link href="__CSS__/index.css" rel="stylesheet">
+<link href="__CSS__/style.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+<script src="__JS__/scrollReveal.js"></script>
+</head>
+<body>
+<header>
+  <div class="logo" data-scroll-reveal="enter right over 1s"></div>
+  <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s"><a href="{:url('index')}"><span>首页</span><span class="en">Home</span></a><a href="{:url('admin/entry/inPage')}"><span>关于我</span><span class="en">About</span></a><a href="{:url('admin/entry/inPage')}"><span>慢生活</span><span class="en">Life</span></a><a href="{:url('admin/entry/inPage')}"><span>碎言碎语</span><span class="en">Doing</span></a><a href="{:url('admin/entry/inPage')}"><span>模板分享</span><span class="en">Share</span></a><a href="{:url('admin/entry/inPage')}"><span>学无止境</span><span class="en">Learn</span></a><a href="{:url('admin/entry/inPage')}"><span>留言</span><span class="en">Saying</span></a></nav>
+	尊敬的{$username},您好！    点此-&gt; {$static}
+</header>
+<article>
+  <div class="container">
+    <div class="blog" data-scroll-reveal="enter top" >
+       {volist name="text" id="item"}
+		<figure>
+			<ul>
+			 <a href="/"><img src="{$item.imageurl}"></a>
+			</ul>
+			<p><a href="/">{$item.text1}</a></p> 
+			<figcaption>{$item.text2}</figcaption>
+		</figure>
+		{/volist} 
+		</div>
+	</div>
+   <ul class="cbp_tmtimeline">
+			{volist name="main_info" id="id"}
+					<li>
+						<time class="cbp_tmtime"><span>{$id.month}-{$id.day}</span> <span>{$id.year}</span></time>
+						<div class="cbp_tmicon"></div>
+						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+							<h2>{$id.title}</h2>
+							 <p><span class="blogpic"><a href="{:url('index/into_info',['id' => $id.id])}"><img src="__STATIC__/images/t03.jpg"></a></span>{$id.content}</p>
+                             <a href="{:url('index/into_info',['id' => $id.id])}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+						</div>
+					</li>
+				{/volist} 
+				</ul>
+  </div>
+</article>
+<footer>
+咸鱼
+</footer>
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		(function(){
+			window.scrollReveal = new scrollReveal({reset: true});
+		})();
+	};
+</script> 
+</body>
+</html>

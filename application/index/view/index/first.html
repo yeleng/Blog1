@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人博客系统</title>
+<meta name="keywords" content="tp5个人博客模板" />
+<meta name="description" content="tp5个人博客" />
+<link href="__CSS__/base2.css" rel="stylesheet">
+<link href="__CSS__/index2.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <div id="logo"><a href="/"></a></div>
+  <nav class="topnav" id="topnav"><a href="{:url('index/index')}"><span>首页</span><span class="en">Protal</span></a><a href="{:url('aboutme')}"><span>关于我</span><span class="en">About</span></a><a href="{:url('suggest')}"><span>留言版</span><span class="en">Gustbook</span></a>
+    
+    {$static}
+</header>
+<div class="banner">
+  <section class="box">
+    <ul class="texts">
+      <p>谁提笔只两行</p>   
+        <p>换一隅你安康</p>  
+        <p>便销得这沧桑</p>   
+        <p>你还在我的心上</p>
+    </ul>
+    <div class="avatar"><a href="#"><span>yeleng</span></a> </div>
+  </section>
+</div>
+<div class="template">
+  <div class="box">
+    <h3>
+      <p><span>Good</span> Picture</p>
+    </h3>
+    <ul>
+      <li><img src="__STATIC__/images/p01.jpg"></a></li>
+      <li><img src="__STATIC__/images/t02.jpg"></a></li>
+      <li><img src="__STATIC__/images/p03.jpg"></a></li>
+      <li><img src="__STATIC__/images/p04.jpg"></a></li>
+      <li><img src="__STATIC__/images/t01.jpg"></a></li>
+      <li><img src="__STATIC__/images/p06.jpg"></a></li>
+    </ul>
+  </div>
+</div>
+<article>
+  <h2 class="title_tj">
+    <p>文章<span>最新</span></p>
+  </h2>
+  <div class="bloglist left">
+      {volist name='content' id= 'vo' key=                                                                                                                                               }
+    <h3>{$vo.title}</h3>
+    <ul>
+      <p>{$vo.content}</p>
+      <a title="{:}" href="{:url('index/into_info',['id' => $vo.id])}" target="_blank" class="readmore">阅读全文>></a>
+    </ul>
+    <p class="dateview"><span>{$vo.time}</span><span>作者：{$vo.author}</span><span>个人博客：[<a href="{:url('index/geren',['username'=>$vo.author])}">{$vo.author}</a>]</span></p>
+  {/volist}
+  </div>
+  <aside class="right">
+    <!-- <h3>
+      <p>最新<span>文章</span></p>
+    </h3>
+    <ul class="rank">
+      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
+      <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
+      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
+      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
+      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
+      <li><a href="/" title="建站流程篇——教你如何快速学会做网站" target="_blank">建站流程篇——教你如何快速学会做网站</a></li>
+      <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>
+      <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>
+    </ul>
+    <h3 class="ph">
+      <p>点击<span>排行</span></p>
+    </h3>
+    <ul class="paih">
+      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
+      <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
+      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
+      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
+      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
+    </ul> -->
+    <h3 class="links">
+      <p>友情<span>链接</span></p>
+    </h3>
+    <ul class="website">
+      <li><a href="http://blog.csdn.net/qq_36124802">作者blog</a></li>
+    </ul> 
+    </div>  
+    <!-- Baidu Button BEGIN -->
+    <!-- <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
+    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
+    <script type="text/javascript" id="bdshell_js"></script> 
+    <script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>  -->
+    <!-- Baidu Button END -->   
+    </aside>
+</article>
+<footer>
+  <p>Design by yeleng <a href="http://blog.csdn.net/qq_36124802" target="_blank">http://blog.csdn.net/qq_36124802</a> <a href="/">咸鱼</a></p>
+</footer>
+<script src="js/silder.js"></script>
+</body>
+</html>

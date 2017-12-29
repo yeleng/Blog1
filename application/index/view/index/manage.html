@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="zh_CN" style="overflow: hidden;">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8">
+    <title>blog 后台管理中心</title>
+
+    <meta name="description" content="This is page-header (.page-header &gt; h1)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="__CSS__/bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__/simplebootadmin.css" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?page=index" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS__/simplebootadminindex.min.css">
+    <style>
+        /*-----------------导航hack--------------------*/
+        .nav-list > li.open {
+            position: relative;
+        }
+
+        .nav-list > li.open .back {
+            display: none;
+        }
+
+        .nav-list > li.open .normal {
+            display: inline-block !important;
+        }
+
+        .nav-list > li.open a {
+            padding-left: 7px;
+        }
+
+        .nav-list > li .submenu > li > a {
+            background: #fff;
+        }
+
+        .nav-list > li .submenu > li a > [class*="fa-"]:first-child {
+            left: 20px;
+        }
+
+        .nav-list > li ul.submenu ul.submenu > li a > [class*="fa-"]:first-child {
+            left: 30px;
+        }
+
+        /*----------------导航hack--------------------*/
+    </style>
+
+    <script>
+        //全局变量
+        var GV = {
+            HOST: "localhost",
+            ROOT: "/cmf/public/",
+            WEB_ROOT: "/cmf/public/",
+            JS_ROOT: "static/js/"
+        };
+    </script>
+            <style>
+            #think_page_trace_open {
+                left: 0 !important;
+                right: initial !important;
+            }
+        </style>
+    
+</head>
+
+<body style="min-width:900px;overflow: hidden;">
+<div id="loading"><i class="loadingicon"></i><span>正在加载...</span></div>
+<div id="right-tools-wrapper">
+    <!--<span id="right_tools_clearcache" title="清除缓存" onclick="javascript:openapp('/cmf/public/admin/setting/clearcache.html','right_tool_clearcache','清除缓存');"><i class="fa fa-trash-o right_tool_icon"></i></span>-->
+    <!--<span id="refresh-wrapper" title="REFRESH_CURRENT_PAGE"><i-->
+            <!--class="fa fa-refresh right_tool_icon"></i></span>-->
+</div>
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/www/public/admin/index/index.html" class="navbar-brand" style="min-width: 200px;text-align: center;">博客后台控制系统</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-main">
+            <div class="pull-left" style="position: relative;">
+                <a id="task-pre" class="task-changebt"><i class="fa fa-chevron-left"></i></a>
+                <div id="task-content">
+                    <ul class="nav navbar-nav cmf-component-tab" id="task-content-inner">
+                        <li class="cmf-component-tabitem noclose" app-id="0" app-url="/cmf/public/admin/main/index.html"
+                            app-name="首页">
+                            <a class="cmf-tabs-item-text">首页</a>
+                        </li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+                <a id="task-next" class="task-changebt"><i class="fa fa-chevron-right"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right simplewind-nav">
+                <li class="light-blue" style="border-left:none;">
+                    <a id="refresh-wrapper" href="javacript:void(0);" title="REFRESH_CURRENT_PAGE" style="color:#fff;font-size: 16px">
+                        <i class="fa fa-refresh right_tool_icon"></i>
+                    </a>
+                </li>
+                <li class="light-blue dropdown" style="border-left:none;">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                                    <img class="nav-user-photo" width="30" height="30"
+                                 src="/cmf/public/themes/admin_simpleboot3/public/assets/images/logo-18.png" alt="admin">
+                                                <span class="user-info">
+								欢迎, {:session('username')}						</span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                                                    <li>
+                                <a href="javascript:openapp('/cmf/public/admin/setting/site.html','index_site','网站信息');"><i
+                                        class="fa fa-cog"></i> 网站信息</a></li>
+                                                    <li>
+                                <a href="javascript:openapp('/cmf/public/admin/user/userinfo.html','index_userinfo','修改信息');"><i
+                                        class="fa fa-user"></i> 修改信息</a></li>
+                                                    <li>
+                                <a href="javascript:openapp('/cmf/public/admin/setting/password.html','index_password','修改密码');"><i
+                                        class="fa fa-lock"></i> 修改密码</a></li>
+                                                <li><a href="/cmf/public/admin/public/logout.html"><i class="fa fa-sign-out"></i> 退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-container container-fluid">
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <a class="btn btn-sm btn-warning" href="/cmf/public/"
+               title="网站首页"
+               target="_blank"
+               data-toggle="tooltip">
+                <i class="fa fa-home"></i>
+            </a>
+            <!--
+                            <a class="btn btn-sm btn-success" href="javascript:openapp('/cmf/public/portal/admin_category/index.html','index_termlist','文章分类管理');" title="文章分类管理">
+                    <i class="fa fa-th"></i>
+                </a>
+                            <a class="btn btn-sm btn-info" href="javascript:openapp('/cmf/public/portal/admin_article/index.html','index_postlist','文章管理');" title="文章管理">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                        -->
+
+                            <a class="btn btn-sm btn-info"
+                   href="javascript:openapp('/cmf/public/user/admin_asset/index.html','userAdminAssetindex','资源管理',true);"
+                   title="资源管理"
+                   data-toggle="tooltip">
+                    <i class="fa fa-file"></i>
+                </a>
+                            <a class="btn btn-sm btn-danger"
+                   href="javascript:openapp('/cmf/public/admin/setting/clearcache.html','index_clearcache','清除缓存',true);"
+                   title="清除缓存"
+                   data-toggle="tooltip">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+                            <a class="btn btn-sm btn-danger"
+                   href="javascript:openapp('/cmf/public/admin/recycle_bin/index.html','index_recycle','回收站',true);"
+                   title="回收站"
+                   data-toggle="tooltip">
+                    <i class="fa fa-recycle"></i>
+                </a>
+                            <a class="btn btn-sm btn-default"
+                   href="javascript:openapp('/cmf/public/admin/menu/index.html','index_menu','后台菜单',true);"
+                   title="后台菜单"
+                   data-toggle="tooltip">
+                    <i class="fa fa-list"></i>
+                </a>
+            
+        </div>
+        <div id="nav-wrapper">
+            <ul class="nav nav-list">
+                        <li>
+                        <a href="#" class="dropdown-toggle">
+                <i class="fa fa-cogs normal"></i>
+                <span class="menu-text normal"> 文章管理 </span>
+                <b class="arrow fa fa-angle-right normal"></b>
+                <i class="fa fa-reply back"></i>
+                <span class="menu-text back"></span>
+
+            </a>
+
+            <ul class="submenu">
+                    <li>
+                <a href="javascript:openapp('/cmf/public/admin/setting/site.html','71admin','网站信息',true);">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									文章添加								</span>
+        </a>
+        
+    </li>
+
+        <li>
+                <a href="javascript:openapp('/cmf/public/admin/mailer/index.html','15admin','邮箱配置',true);">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									文章修改								</span>
+        </a>
+        
+    </li>
+
+        <li>
+                <a href="javascript:openapp('/cmf/public/admin/theme/index.html','95admin','模板管理',true);">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									文章删除								</span>
+        </a>
+        
+    </li>
+
+                </ul>
+            
+        </li>
+
+                <li>
+                        <a href="#" class="dropdown-toggle">
+                <i class="fa fa-group normal"></i>
+                <span class="menu-text normal"> 用户管理 </span>
+                <b class="arrow fa fa-angle-right normal"></b>
+                <i class="fa fa-reply back"></i>
+                <span class="menu-text back">返回</span>
+
+            </a>
+
+            <ul class="submenu">
+                    <li>
+                <a href="#" class="dropdown-toggle">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									管理组								</span>
+            <b class="arrow fa fa-angle-right"></b>
+        </a>
+        <ul class="submenu">
+                <li>
+        
+        <a href="javascript:openapp('/cmf/public/admin/rbac/index.html','50admin','角色管理',true);">
+            &nbsp;<i class="fa fa-angle-double-right"></i>
+            <span class="menu-text">
+								角色管理							</span>
+        </a>
+    </li>
+
+        <li>
+        
+        <a href="javascript:openapp('/cmf/public/admin/user/index.html','110admin','管理员',true);">
+            &nbsp;<i class="fa fa-angle-double-right"></i>
+            <span class="menu-text">
+								管理员							</span>
+        </a>
+    </li>
+
+            </ul>
+        
+    </li>
+
+        <li>
+                <a href="#" class="dropdown-toggle">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									用户组								</span>
+            <b class="arrow fa fa-angle-right"></b>
+        </a>
+        <ul class="submenu">
+                <li>
+        
+        <a href="javascript:openapp('/cmf/public/user/admin_index/index.html','153user','本站用户',true);">
+            &nbsp;<i class="fa fa-angle-double-right"></i>
+            <span class="menu-text">
+								本站用户							</span>
+        </a>
+    </li>
+
+        <li>
+        
+        <a href="javascript:openapp('/cmf/public/user/admin_oauth/index.html','156user','第三方用户',true);">
+            &nbsp;<i class="fa fa-angle-double-right"></i>
+            <span class="menu-text">
+								第三方用户							</span>
+        </a>
+    </li>
+
+            </ul>
+        
+    </li>
+
+                </ul>
+            
+        </li>
+
+                <li>
+                    
+
+            <ul class="submenu">
+     
+
+                </ul>
+            
+        </li>
+
+                <li>
+                        <a href="#" class="dropdown-toggle">
+                <i class="fa fa-th normal"></i>
+                <span class="menu-text normal"> 友链管理 </span>
+                <b class="arrow fa fa-angle-right normal"></b>
+                <i class="fa fa-reply back"></i>
+                <span class="menu-text back">返回</span>
+
+            </a>
+
+            <ul class="submenu">
+                    <li>
+                <a href="javascript:openapp('/cmf/public/portal/admin_article/index.html','121portal','文章管理',true);">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									添加友链								</span>
+        </a>
+        
+    </li>
+
+        <li>
+                <a href="javascript:openapp('/cmf/public/portal/admin_category/index.html','131portal','分类管理',true);">
+            <i class="fa fa-caret-right"></i>
+            <span class="menu-text">
+									删除友链								</span>
+        </a>
+        
+    </li>
+
+                </ul>
+            
+        </li>
+
+                    </ul>
+        </div>
+
+    </div>
+
+    <div class="main-content">
+        <div class="page-content" id="content">
+            <iframe src="/cmf/public/admin/main/index.html" style="width:100%;height: 100%;" frameborder="0" id="appiframe-0"
+                    class="appiframe"></iframe>
+        </div>
+    </div>
+</div>
+
+<script src="/cmf/public/themes/admin_simpleboot3/public/assets/js/jquery-1.10.2.min.js"></script>
+<script src="/cmf/public/static/js/wind.js"></script>
+<script src="/cmf/public/themes/admin_simpleboot3/public/assets/js/bootstrap.min.js"></script>
+<script src="/cmf/public/static/js/admin.js"></script>
+<script src="/cmf/public/themes/admin_simpleboot3/public/assets/simpleboot3/js/adminindex.js"></script>
+<script>
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+        $("li.dropdown").hover(function () {
+            $(this).addClass("open");
+        }, function () {
+            $(this).removeClass("open");
+        });
+    });
+
+    var ismenumin = $("#sidebar").hasClass("menu-min");
+    $(".nav-list").on("click", function (event) {
+        var closest_a = $(event.target).closest("a");
+        if (!closest_a || closest_a.length == 0) {
+            return
+        }
+        if (!closest_a.hasClass("dropdown-toggle")) {
+            if (ismenumin && "click" == "tap" && closest_a.get(0).parentNode.parentNode == this) {
+                var closest_a_menu_text = closest_a.find(".menu-text").get(0);
+                if (event.target != closest_a_menu_text && !$.contains(closest_a_menu_text, event.target)) {
+                    return false
+                }
+            }
+            return
+        }
+        var closest_a_next = closest_a.next().get(0);
+        if (!$(closest_a_next).is(":visible")) {
+            var closest_ul = $(closest_a_next.parentNode).closest("ul");
+            if (ismenumin && closest_ul.hasClass("nav-list")) {
+                return
+            }
+            closest_ul.find("> .open > .submenu").each(function () {
+                if (this != closest_a_next && !$(this.parentNode).hasClass("active")) {
+                    $(this).slideUp(150).parent().removeClass("open")
+                }
+            });
+        }
+        if (ismenumin && $(closest_a_next.parentNode.parentNode).hasClass("nav-list")) {
+            return false;
+        }
+        $(closest_a_next).slideToggle(150).parent().toggleClass("open");
+        return false;
+    });
+</script>
+</body>
+</html>

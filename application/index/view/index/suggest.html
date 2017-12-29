@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人博客系统</title>
+<meta name="keywords" content="tp5个人博客模板" />
+<meta name="description" content="tp5个人博客" />
+<link href="__CSS__/base2.css" rel="stylesheet">
+<link href="__CSS__/index2.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <div id="logo"><a href="/"></a></div>
+  <nav class="topnav" id="topnav"><a href="{:url('index/index')}"><span>首页</span><span class="en">Protal</span></a><a href="{:url('aboutme')}"><span>关于我</span><span class="en">About</span></a><a href="{:url('suggest')}"><span>留言版</span><span class="en">Gustbook</span></a>
+    
+    {$static}
+</header>
+<div class="banner">
+  <section class="box">
+    <ul class="texts">
+      <p>谁提笔只两行</p>   
+        <p>换一隅你安康</p>  
+        <p>便销得这沧桑</p>   
+        <p>你还在我的心上</p>
+    </ul>
+    <div class="avatar"><a href="#"><span>yeleng</span></a> </div>
+  </section>
+</div>
+<div class="template">
+  <div class="box">
+    <h3>
+      <p><span>Good</span> Picture</p>
+    </h3>
+    <ul>
+      <li><img src="__STATIC__/images/p01.jpg"></a></li>
+      <li><img src="__STATIC__/images/t02.jpg"></a></li>
+      <li><img src="__STATIC__/images/p03.jpg"></a></li>
+      <li><img src="__STATIC__/images/p04.jpg"></a></li>
+      <li><img src="__STATIC__/images/t01.jpg"></a></li>
+      <li><img src="__STATIC__/images/p06.jpg"></a></li>
+    </ul>
+  </div>
+</div>
+<article>
+                       <div class="bloglist left">
+                         
+      {volist name='list' id= 'vo' key= 1}
+    <ul>
+      <p>{$vo.content}</p>
+    </ul>
+    <p class="dateview"><span>{$vo.time}</span><span>作者：{$vo.username}</span></p>
+  {/volist}
+  </div>
+  <p>{$list->render()}
+  </p>
+  <form name="form1" method="post" action="{:url('index/add_suggest')}">
+    <label for="username"></label>
+    作者<input type="text" name="username" id="username"></br>
+    联系电话<input type="text" name="phone" id="phone"></br>
+ 	留言<textarea name="content" maxlength="100"cols="25" rows="10" ></textarea>
+    <input type="submit" value="提交留言">
+  </form>
+  <p>&nbsp;</p>
+</article>
+<footer>
+  <p>Design by yeleng <a href="http://blog.csdn.net/qq_36124802" target="_blank">http://blog.csdn.net/qq_36124802</a> <a href="/">咸鱼</a></p>
+</footer>
+<script src="js/silder.js"></script>
+</body>
+</html>

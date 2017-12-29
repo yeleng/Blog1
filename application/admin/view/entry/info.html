@@ -1,0 +1,46 @@
+{extend name='base'}
+{block name='content'}
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+            <!-- 这里的class 为这个标签的颜色不同 -->
+			<li class="active"><a href="{:url('entry/info')}">修改个人信息</a></li>      
+			<li><a href="{:url('entry/pass')}">修改密码</a></li>
+		</ul>
+		<form class="form-horizontal  margin-top-20" method="post" action="{:url('info')}">
+			<div class="form-group">
+				<label for="input-old-password" class="col-sm-2 control-label">旧密码</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="password" class="form-control" id="input-old-password" name="old_password">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-password" class="col-sm-2 control-label">新的邮箱号</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="email" class="form-control" id="email" name="email">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-repassword" class="col-sm-2 control-label">修改名字</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="name" class="form-control" id="name" name="name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="input-repassword" class="col-sm-2 control-label">修改个人介绍</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="name" class="form-control" id="intro" name="intro">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">保存</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- <script src="__STATIC__/js/admin.js"></script> -->
+</body>
+</html>
+{/block}

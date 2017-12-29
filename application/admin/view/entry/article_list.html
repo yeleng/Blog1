@@ -1,0 +1,68 @@
+{extend name='base'}
+{block name='content'}
+<body>
+        <div class="wrap js-check-wrap">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="{:url('article_list')}">文章列表</a></li>
+                <li><a href="{:url('article_add')}">添加文章</a></li>
+                <li><a href="{:url('article_deleted')}">回收站</a></li>
+            </ul>
+            <form class="well form-inline margin-top-20" method="post" action="{:url('inPage')}">
+                标题:
+                <input type="text" class="form-control" name="keyword" style="width: 200px;"
+                       value="{$keyword|default=''}" placeholder="请输入关键字">
+                <button class="btn btn-primary">搜索</button>
+            </form>
+            <form class="js-ajax-form" method="post">
+                
+                <table class="table table-hover table-bordered table-list">
+                    <thead>
+                    <tr>
+                        <th width="16">
+                            <label>
+                                <input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x">
+                            </label>
+                        </th>
+                        <th width="100">ID</th>
+                        <th>标题</th>
+                        <th width="80">作者</th>
+                        <th width="160">发布时间</th>
+                        <th width="120">操作</th>
+                    </tr>
+                    </thead>
+                    {volist name='list' id= 'vo' key=1 }
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]"
+                                       value="id">
+                            </td>
+                            <td>{$key+1}</td>
+                            <td>
+                                <a href="{:url('entry/article_modify', ['id' => $vo['id']])}" target="_blank">
+                                    {$vo.title}
+                                </a>
+                            </td>
+                            <td>{$vo.author}</td>
+                            <td>
+                                    {$vo.time}
+                                 </td>
+                            <td>
+                                <a href="{:url('entry/article_modify', ['id' => $vo['id']])}">编辑</a>
+                                <a onclick="if(confirm('您确定要删除这条文章吗?')==false)return false;" href="{:url('entry/article_delete', ['id' => $vo['id']])}" >删除</a>
+                            </td>
+                        </tr>
+                    {/volist}
+                </table>
+                <div class="table-actions">
+                    <button class="btn btn-danger btn-sm js-ajax-submit" type="submit" data-action="{:url('entey/article_delete')}"
+                            data-subcheck="true" data-msg="你确定删除吗？">删除
+                    </button>
+                </div>
+                <!-- 这里是TP5关于分页的使用 -->
+                {$list->render()}
+            </form>
+        </div>
+        <script src="__STATIC__/js/admin.js"></script>
+        </body>
+        </html>
+{/block}

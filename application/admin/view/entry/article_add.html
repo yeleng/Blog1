@@ -1,0 +1,36 @@
+{extend name='base'}
+{block name='content'}
+<body>
+<table width="100%"  border="0" cellpadding="2" cellspacing="1" bgcolor="#000000">
+        <div class="wrap js-check-wrap">
+        <ul class="nav nav-tabs">
+                <li><a href="{:url('article_list')}">文章列表</a></li>
+                <li class="active"><a href="{:url('article_add')}">添加文章</a></li>
+                <li><a href="{:url('article_deleted')}">回收站</a></li>
+        </ul>
+    <form id="form1" name="form1" method="post" action="{:url('article_add')}">
+      <table width="800" border="0" cellpadding="8" cellspacing="1">
+        <tr>
+          <td colspan="2" align="center">添加文章</td>
+          </tr>
+          <tr>
+                <td>标题</td>
+                <td><textarea name="title" cols="50" rows="1" id="title"></textarea></td>
+              </tr>
+        <tr>
+          <td>内容</td>
+          <td><textarea name="content" cols="100" rows="20" id="content"></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="right"><input type="submit" name="button" id="button" value="提交" /></td>
+          </tr>
+      </table>
+    </form></td>
+  </tr>
+  <tr>
+    <td colspan="2" bgcolor="#FFFF99">&nbsp;</td>
+</div>
+</table>
+</body>
+        </html>
+{/block}
